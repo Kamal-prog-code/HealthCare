@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Diabetes{% endblock %}
+{% block content %}
+<body style="background-image: url('/static/imgs/dia.jpg'); background-size:100%">
+    <div class="container-fluid" style="color: rgb(255, 0, 76);">
+        <div class=" card display-4 my-2 text-center">Diabetes Disease Prediction</div>
+        <hr/>
+            {% if result %}
+            <div class="card col-md-4 offset-md-4">
+                <div class="blink display-4 text-center">{{ result }} </div>
+            </div>
+            {% endif %}
+            <form class="row" method="POST" action="{% url 'diab_test' %}">
+                {% csrf_token %}
+                <div class="card col-md-4 offset-md-4">
+                    Pregnancies: <input name="pg"/><br/>
+                    Glucose: <input name="gl"/><br/>
+                    BP: <input name="bp"/><br/>
+                    SkinThickness: <input name="st"/><br/>
+                    Insulin: <input name="ins"/><br/>
+                    BMI: <input name="bmi"/><br/>
+                    Diabetic_pf: <input name="dpf"/><br/>
+                    Age: <input name="age"/><br/><br>
+                    <input type="submit" class="btn btn-danger" value="Submit"></input>
+                </div>
+            </form>    
+    </div>    
+</body>
+{% endblock %}  
