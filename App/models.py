@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .storage import OverwriteStorage
+from datetime import datetime    
 
 class users(models.Model):  
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
@@ -21,7 +22,27 @@ class DiabTest(models.Model):
     BMI=models.FloatField(default=0)
     Diabetic_pf=models.FloatField(default=0)
     age=models.FloatField(default=10)
-    Res=models.CharField(max_length=10,null=True) 
+    Res=models.CharField(max_length=10,null=True)
+    Testdate = models.DateTimeField(default=datetime.now, blank=True)
+    def __str__(self):
+        return str(self.user)
+
+class HeartTest(models.Model):
+    user = models.CharField(max_length=50,null=True)
+    age=models.FloatField(default=0)
+    anaemia=models.FloatField(default=0)
+    creatinine_phosphokinase=models.IntegerField(default=0)
+    diabetes=models.FloatField(default=0)
+    ejection_fraction=models.FloatField(default=0)
+    high_blood_pressure=models.FloatField(default=0)
+    platelets=models.FloatField(default=0)
+    serum_creatinine=models.FloatField(default=10)
+    serum_sodium=models.FloatField(max_length=10,null=True) 
+    sex=models.FloatField(max_length=10,null=True) 
+    smoking=models.FloatField(max_length=10,null=True) 
+    time=models.FloatField(max_length=10,null=True) 
+    DEATH_EVENT=models.CharField(max_length=10,null=True) 
+    Testdate = models.DateTimeField(default=datetime.now, blank=True)
     def __str__(self):
         return str(self.user)
 
@@ -30,4 +51,4 @@ class Med_file(models.Model):
     mediafile = models.FileField(storage=OverwriteStorage())
 
     def __str__(self):
-        return self.filename
+        return self.filename										        
