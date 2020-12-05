@@ -4,5 +4,4 @@ from .models import *
 # Register your models here.
 admin.site.register(users)
 admin.site.register(DiabTest)
-admin.site.register(Med_file)
 admin.site.register(HeartTest)
